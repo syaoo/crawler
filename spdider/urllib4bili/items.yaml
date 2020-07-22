@@ -1,0 +1,31 @@
+# https://www.bilibili.com/ranking/all/0/0/3
+# 视频数据：https://api.bilibili.com/x/web-interface/archive/stat?aid=92954385
+
+rank_menu : 
+    '全站榜' : all
+    # '原创榜' : origin
+    # '新番榜' : bangumi
+    # '影视榜' : cinema
+    # '新人榜' : rookie
+rank_tab : 
+    '全站' : 0
+    # '动画' : 1
+    # '国创相关' : 168
+    # '音乐' : 3
+    # '舞蹈' : 129
+    # '游戏' : 4
+    # '科技' : 36
+    # '数码' : 188
+    # '生活' : 160
+    # '鬼畜' : 119
+    # '时尚' : 155
+    # '娱乐' : 5
+    # '影视' : 181
+rank_type : 
+    # '近期投稿' : 1
+    '全部投稿' : 0
+period : 
+    '日排行' : 1
+    # '三日排行' : 3
+    # '周排行' : 7
+    # '月排行' : 30

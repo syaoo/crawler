@@ -81,13 +81,11 @@ pdf是分页加载的，从下面代码可以找到每页pdf的链接
     var DEFAULT_URL = DEFAULT_BASE_DOWNLOAD_URL + "&cpage=" + DEFAULT_CURRENT_PAGE;
     var index_page = DEFAULT_CURRENT_PAGE;
 ```
-提取出需要的变量`fileMark`,`userMark`,`cpage`
+提取出需要的变量`fileMark`,`userMark`,`total`
 
 ### 合并pdf
 使用pyPDF2库合并
 http://mstamy2.github.io/PyPDF2/
 
+## Bilibili
 
-http://sslibbook1.sslibrary.com/reader/jpath/jpathreader?ssid=96212832&d=3562a2f1fcaa10478b89c99dd9eb8a46
-
-http://sslibbook1.sslibrary.com/reader/pdf/pdfreader?ssid=96191716&d=b1d60244def865983c829e532f329eaf

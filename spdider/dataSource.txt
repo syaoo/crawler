@@ -1,0 +1,16 @@
+字体编辑网站：https://font.qqe2.com/、
+电影票房：
+ - 猫眼专业版：
+    - 网址：https://piaofang.maoyan.com/dashboard
+    - 数据地址: https://piaofang.maoyan.com/second-box?beginDate=日期 
+    如:https://piaofang.maoyan.com/second-box?beginDate=20200207
+    - 无加密，数据地址可在浏览器直接打开
+ - 猫眼电影年度排行榜：
+    - 网址：https://piaofang.maoyan.com/rankings/year
+    - 数据地址：网页源码
+    - 有css字体加密
+
+大众点评：
+ - 网址：http://www.dianping.com/
+ - 数据地址：网页源码
+ - 有css字体加密
