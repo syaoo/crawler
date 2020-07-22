@@ -90,11 +90,12 @@ class ssBook(object):
 		self.urlPath = urlPath
 		return [urlPath,pNames]
 	
-	def download(self,savePath,zoom=0):
+	def download(self,savePath,zoom=0,r=False):
 		'''
 		下载图书各页
 		savePath：保存路径
 		zoom：图书清晰度 [-2,-1,0,1,2],仅对扫描图书有效。
+		r:是否重新下载已存在的页面，默认False，不重新下载
 		'''
 		if self.booktype==None:
 			print("Nothing download! please use `getPages` to get download path.")
@@ -109,15 +110,19 @@ class ssBook(object):
 					durl = parse.urljoin(urlPath,th)+'?zoom={}'.format(zoom)
 					# print(durl)
 					fname = os.path.join(savePath,th+'.jpg')
-					print("Downloading...{}".format(fname))
-					request.urlretrieve(durl,fname)
+					ifext = os.path.exists(fname)
+					if not ifext or r:
+						print("Downloading...{}".format(fname))
+						request.urlretrieve(durl,fname)
 			elif self.booktype == 'pdf':
 				for i,th in enumerate(pNames):
 					durl = urlPath + '&cpage={}'.format(i+1)
 					# print(durl)
 					fname = os.path.join(savePath,th+'.pdf')
-					print("Downloading...{}".format(fname))
-					request.urlretrieve(durl,fname)
+					ifext = os.path.exists(fname)
+					if not ifext or r:
+						print("Downloading...{}".format(fname))
+						request.urlretrieve(durl,fname)
 
 	def onekey(self,outfile):
 		"""
