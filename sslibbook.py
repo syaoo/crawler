@@ -66,8 +66,8 @@ class ssBook(object):
 			pNames = []
 			for i,tp in enumerate(pagestype):
 				if tp == 'cov':
-					if pages[i][1] == 2:
-						pNames.append("cov{0:03d}".format(2))
+					if pages[i][1] != 0:
+						pNames.append("cov{0:03d}".format(pages[i][1]))
 				else:
 					for j in range(pages[i][1]):
 						pNames.append(tp+"{0:0{1}}".format(j+1,6-len(tp)))
@@ -124,24 +124,25 @@ class ssBook(object):
 						print("Downloading...{}".format(fname))
 						request.urlretrieve(durl,fname)
 
-	def onekey(self,outfile):
+	def onekey(self,outfile,zoom=0,savepages=False):
 		"""
 		下载整本图书
 		outfile: 图书保存名称
 		"""
-		tmp = '.tmp'
+		tmp = outfile
 		print('get pages...')
 		self.getPages()
 		print('download pages...')
-		self.download(tmp)
+		self.download(tmp,zoom=zoom)
 		print('mergering...')
 		if self.booktype == 'img':
 			ssBook.merge_img(tmp,outfile)
 		elif self.booktype == 'pdf':
 			ssBook.merge_pdf(tmp,outfile)
-		for i in os.listdir(tmp):
-			os.remove(os.path.join(tmp,i))
-		os.removedirs(tmp)
+		if not savepages:
+			for i in os.listdir(tmp):
+				os.remove(os.path.join(tmp,i))
+			os.removedirs(tmp)
 		print('Ok!')
 
 	@staticmethod
@@ -185,7 +186,7 @@ class ssBook(object):
 		print('Ok!')
 
 	@staticmethod
-	def merge_img(fpath,outfile,img_type='jpg'):
+	def merge_img(fpath,outfile,img_type='jpg',sort=True):
 		"""
 		将目录内的图片转为PDF并合并为一个PDF文件
 		参数：
@@ -199,11 +200,39 @@ class ssBook(object):
 			print('mergering...')
 			for i in os.listdir(fpath):
 				if i.endswith(img_type):
+					# img_list.append(i)
 					img_list.append(os.path.join(fpath,i))
+			if sort:
+				img_list.sort(key=ssBook.skey)
+			# img_list = [os.path.join(fpath,i) for i in img_list]
+			# print(img_list)
 			f.write(img2pdf.convert(img_list))
 		print('Ok!')
 	
-
+	@staticmethod
+	def skey(s):
+		"""
+		定义列表sort方法的排序依据
+		"""
+		# val = 0
+		s=os.path.split(s)[-1]
+		if s=='cov001':
+			val=0
+		elif s[:3]=='bok':
+			val=1
+		elif s[:3]=='leg':
+			val=2
+		elif s[:3]=='fow':
+			val=3
+		elif s[:1]=='!':
+			val=4
+		elif s[:3]=='att':
+			val=6
+		elif s=='cov002':
+			val=7
+		else:
+			val=5
+		return val
 
 if __name__ == '__main__':
 	# # 测试图片
