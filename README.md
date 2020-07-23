@@ -3,6 +3,7 @@ title: 网络爬虫
 ---
 
 ## 超星汇雅图书下载(扫描书籍)
+>> 在github又发现了两个下载程序[sslibrary](https://github.com/0NG/sslibrary-pdf-downloader)和[book118](https://github.com/OhYee/documentDownloader), 有时准备参考前者，改进我这个程序并合并后者的功能。
 网页有下载按钮，但是需要下载超星阅读器，而且下载后只能在阅读器内查看，显然不是我想要的，那么考虑能不能从web端入手。简单分析了一下，发现web端会以图片的形式分页加载书本内容，因此可以用爬虫将这些图片爬下来，然后再合并为一个PDF文件。
 ### 资源爬取
 #### 资源路径分析
